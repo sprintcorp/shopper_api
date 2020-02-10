@@ -6,19 +6,37 @@ use Illuminate\Support\Collection;
 
 trait ApiResponser
 {
-    private function successResponse($data,$code){
+    private function successResponse($data,$code)
+    {
         return response()->json($data,$code);
     }
 
-    protected function errorResponse($message,$code){
+    protected function errorResponse($message,$code)
+    {
         return response()->json(['error' => $message,'code'=>$code],$code);
     }
 
-    protected function showAll(Collection $collection,$code = 200){
+    protected function showAll(Collection $collection,$code = 200)
+    {
         return $this->successResponse(['data' => $collection],$code);
     }
 
-    protected function showOne(Model $model,$code = 200){
+    protected function showOne(Model $model,$code = 200)
+    {
         return $this->successResponse(['data' => $model],$code);
     }
+
+//    protected function isDirty($check)
+//    {
+//        if(!$check->isDirty()){
+//            return $this->errorResponse('You need to specify a different value to update',422);
+//        }
+//    }
+//
+//    protected function isClean($check)
+//    {
+//        if($check->isClean()){
+//            return $this->errorResponse('You need to specify a different value to update',422);
+//        }
+//    }
 }

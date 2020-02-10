@@ -18,6 +18,7 @@ class CategoryProductTable extends Migration
             $table->bigInteger('category_id')->unsigned();
             $table->bigInteger('product_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('product_id')->references('id')->on('products');
         });
