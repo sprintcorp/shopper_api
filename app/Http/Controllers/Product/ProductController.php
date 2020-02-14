@@ -26,7 +26,7 @@ class ProductController extends ApiController
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -37,7 +37,7 @@ class ProductController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -59,7 +59,7 @@ class ProductController extends ApiController
      */
     public function edit(Product $product)
     {
-        //
+
     }
 
     /**
@@ -71,7 +71,7 @@ class ProductController extends ApiController
      */
     public function update(Request $request, Product $product)
     {
-        //
+
     }
 
     /**
@@ -82,6 +82,6 @@ class ProductController extends ApiController
      */
     public function destroy(Product $product)
     {
-        //
+
     }
 }

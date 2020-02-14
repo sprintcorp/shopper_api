@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     use Notifiable,SoftDeletes;
-    const VERIFIED_USER = '1';
+    const VERIFIED_USER = '2';
     const UNVERIFIED_USER = '0';
 
     const ADMIN_USER = 'true';
@@ -34,7 +34,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token','verification_token'
+        'password',
+        'remember_token',
+        'verification_token'
     ];
 
     /**
@@ -63,12 +65,12 @@ class User extends Authenticatable
 
     public function isVerified()
     {
-        return $this->verified == User::VERIFIED_USER;
+        return $this->verified === User::VERIFIED_USER;
     }
 
     public function isAdmin()
     {
-        return $this->admin == User::ADMIN_USER;
+        return $this->admin === User::ADMIN_USER;
     }
 
     public static function generateVerificationCode()

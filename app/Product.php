@@ -16,7 +16,7 @@ class Product extends Model
     protected $hidden = ['pivot'];
     public function isAvailable()
     {
-        return $this->status == Product::AVAILABLE_PRODUCT;
+        return $this->status === Product::AVAILABLE_PRODUCT;
     }
 
     public function seller()
