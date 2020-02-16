@@ -34,7 +34,7 @@ class ProductTransformer extends TransformerAbstract
     public function transform(Product $product)
     {
         return [
-            'user_id' => (int)$product->id,
+            'product_id' => (int)$product->id,
             'title' => (string)$product->title,
             'description' => (string)$product->description,
             'stock' => (int)$product->quantity,
@@ -44,13 +44,35 @@ class ProductTransformer extends TransformerAbstract
             'created_at' => (string)$product->created_at,
             'updated_at' => (string)$product->updated_at,
             'deleted_at' => isset($product->deleted_at)?(string)$product->deleted_at:null,
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('products.show',$product->id),
+                ],
+                [
+                    'rel' => 'product.buyers',
+                    'href' => route('products.buyers.index',$product->id),
+                ],
+                [
+                    'rel' => 'product.category',
+                    'href' => route('products.categories.index',$product->id),
+                ],
+                [
+                    'rel' => 'sellers',
+                    'href' => route('sellers.show',$product->seller_id),
+                ],
+                [
+                    'rel' => 'product.transactions',
+                    'href' => route('products.transactions.index',$product->id),
+                ]
+            ]
         ];
     }
 
     public static function originalAttributes($index)
     {
         $attributes = [
-            'user_id' => 'id',
+            'product_id' => 'id',
             'title' => 'title',
             'description' => 'description',
             'stock' => 'quantity',

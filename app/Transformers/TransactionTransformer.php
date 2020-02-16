@@ -34,20 +34,42 @@ class TransactionTransformer extends TransformerAbstract
     public function transform(Transaction $transaction)
     {
         return [
-            'user_id' => (int)$transaction->id,
+            'transaction_id' => (int)$transaction->id,
             'quantity' => (int)$transaction->quantity,
             'buyer' => (int)$transaction->buy_id,
             'product' => (int)$transaction->product_id,
             'created_at' => (string)$transaction->created_at,
             'updated_at' => (string)$transaction->updated_at,
             'deleted_at' => isset($transaction->deleted_at)?(string)$transaction->deleted_at:null,
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('transactions.show',$transaction->id),
+                ],
+                [
+                    'rel' => 'transaction.categories',
+                    'href' => route('transactions.categories.index',$transaction->id),
+                ],
+                [
+                    'rel' => 'transaction.sellers',
+                    'href' => route('transactions.sellers.index',$transaction->id),
+                ],
+                [
+                    'rel' => 'buyer',
+                    'href' => route('categories.sellers.index',$transaction->buyer_id),
+                ],
+                [
+                    'rel' => 'product',
+                    'href' => route('products.show',$transaction->product_id),
+                ]
+            ]
         ];
     }
 
     public static function originalAttributes($index)
     {
         $attributes = [
-            'user_id' => 'id',
+            'transaction_id' => 'id',
             'quantity' => 'quantity',
             'buyer' => 'buyer',
             'product' => 'product',
