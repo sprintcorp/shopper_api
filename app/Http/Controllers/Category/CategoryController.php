@@ -4,10 +4,17 @@ namespace App\Http\Controllers\Category;
 
 use App\Category;
 use App\Http\Controllers\ApiController;
+use App\Transformers\CategoryTransformer;
 use Illuminate\Http\Request;
 
 class CategoryController extends ApiController
 {
+    public function __construct()
+    {
+//        parent::__construct();
+        $this->middleware('client.credentials')->only(['index','show']);
+        $this->middleware('auth:api')->except(['index','show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,16 +24,6 @@ class CategoryController extends ApiController
     {
         $category = Category::all();
         return $this->showAll($category);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -56,18 +53,6 @@ class CategoryController extends ApiController
     {
         return $this->showOne($category);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
