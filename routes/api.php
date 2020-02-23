@@ -42,7 +42,7 @@ Route::resource('products.buyers.Transactions','Product\ProductBuyerTransactionC
 /*
  * Sellers
  */
-    Route::resource('sellers','Seller\SellerController',['only' =>['index','show']]);
+Route::resource('sellers','Seller\SellerController',['only' =>['index','show']]);
 Route::resource('sellers.transactions','Seller\SellerTransactionController',['only' =>['index']]);
 Route::resource('sellers.categories','Seller\SellerCategoryController',['only' =>['index']]);
 Route::resource('sellers.buyers','Seller\SellerBuyerController',['only' =>['index']]);
@@ -66,6 +66,6 @@ Route::name('resend')->get('users/{user}/resend','User\UserController@resend');
  * Oauth
  */
 Route::post('oauth/token','\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});

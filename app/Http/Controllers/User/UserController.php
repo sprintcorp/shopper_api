@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends ApiController
 {
-//    public function __construct()
-//    {
-//        parent::__construct();
-//        $this->middleware('transform.input:'.UserTransformer::class)->only(['store','update']);
-//    }
+
     public function __construct()
     {
 //        parent::__construct();
